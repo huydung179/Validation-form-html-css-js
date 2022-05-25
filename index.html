@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Validation Form</title>
+  </head>
+  <body>
+    <form class="validation-form" method="POST" action="#">
+      <div class="header">
+        <div class="header__title">Đăng ký thành viên</div>
+        <div class="header__desc">Cùng nhau học lập trình Web</div>
+      </div>
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          name="name"
+          placeholder="Enter your name"
+          autocomplete="off"
+        />
+        <span class="error-status"></span>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          name="email"
+          placeholder="Enter your email"
+          autocomplete="off"
+        />
+        <span class="error-status"></span>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          id="password"
+          name="password"
+          placeholder="Enter your password"
+          autocomplete="off"
+        />
+        <span class="error-status"></span>
+      </div>
+      <div class="form-group">
+        <label for="confirm_password">Confirm Password</label>
+        <input
+          type="password"
+          class="form-control"
+          id="confirm_password"
+          name="confirm_password"
+          placeholder="Confirm your password"
+          autocomplete="off"
+        />
+        <span class="error-status"></span>
+      </div>
+      <div class="form-group">
+        <button class="submit-btn" type="submit">Đăng ký</button>
+      </div>
+    </form>
+  </body>
+  <script src="assets/js/script.js"></script>
+  <script>
+    Validator({
+      formElement: document.querySelector(".validation-form"),
+      errorClassName: "error-status",
+      rules: {
+        name: {
+          required: true,
+          minLength: 3,
+          maxLength: 20,
+        },
+        email: {
+          required: true,
+          email: true,
+        },
+        password: {
+          required: true,
+          minLength: 6,
+          maxLength: 20,
+        },
+        confirm_password: {
+          required: true,
+          equalTo: "#password",
+        },
+      },
+      messages: {
+        name: {
+          required: "Vui lòng nhập tên",
+          minLength: "Tên phải có ít nhất 3 ký tự",
+          maxLength: "Tên phải có nhiều nhất 20 ký tự",
+        },
+        email: {
+          required: "Vui lòng nhập email",
+          email: "Email không hợp lệ",
+        },
+        password: {
+          required: "Vui lòng nhập mật khẩu",
+          minLength: "Mật khẩu phải có ít nhất 6 ký tự",
+          maxLength: "Mật khẩu phải có nhiều nhất 20 ký tự",
+        },
+        confirm_password: {
+          required: "Vui lòng nhập lại mật khẩu",
+          equalTo: "Mật khẩu không khớp",
+        },
+      },
+    });
+  </script>
+</html>
